@@ -24,7 +24,7 @@ makeFiles(){
   touch main.js
   cd $baseDir/$newSite/css
   touch style.css
-  cp -r /home/$USER/Documents/jsLibs/ $baseDir/$newSite/
+  cp -r home/$SUDO_USER/Documents/jsLibs/ $baseDir/$newSite/
 }
 
 makeDirStructure
