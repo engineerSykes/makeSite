@@ -9,12 +9,11 @@ baseDir=$PWD
 
 #create the base directories
 makeDirStructure(){
-  mkdir $newSite/html
-  mkdir $newSite/images
-  mkdir $newSite/js
-  mkdir $newSite/css
-  mkdir $newSite/php
-  mkdir $newSite/jsLibs
+  mkdir /var/www/$newSite/html
+  mkdir /var/www/$newSite/images
+  mkdir /var/www/$newSite/js
+  mkdir /var/www/$newSite/css
+  mkdir /var/www/$newSite/php
 }
 
 #create the base empty files
@@ -25,7 +24,7 @@ makeFiles(){
   touch main.js
   cd $baseDir/$newSite/css
   touch style.css
-  cp -r /home/chris/Documents/jsLibs/ $baseDir/$newSite/
+  cp -r /home/$USER/Documents/jsLibs/ $baseDir/$newSite/
 }
 
 makeDirStructure
@@ -33,7 +32,7 @@ makeFiles
 
 #Put into index.html to make file skeleton
 cat <<EOT >> $baseDir/$newSite/html/index.html
-<!--  Author:       Christopher Sykes
+<!--  Author:       Your Name Here
 //    Date:         --/--/--
 //    File name:    ../js/main.js
 //    Project Name: --enter--
@@ -43,6 +42,7 @@ cat <<EOT >> $baseDir/$newSite/html/index.html
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
+    <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
     <script src="../js/main.js">
@@ -50,15 +50,21 @@ cat <<EOT >> $baseDir/$newSite/html/index.html
   </head>
   <body>
     <p id="test">This is some test text to make sure that there is output to the screen</p>
+    
+    <!--
+    Uncomment this area to add p5.js and addons to be included
     <script type="text/javascript" src="../jsLibs/p5.dom.js"></script>
     <script type="text/javascript" src="../jsLibs/p5.js"></script>
+    <script type="text/javascript" src="../jsLibs/p5.sound.js"></script>
+    -->
+    
   </body>
 </html>
 EOT
 
 # create the base style.css file
 cat <<EOT >> $baseDir/$newSite/css/style.css
--- Author:       Christopher Sykes
+-- Author:       Your Name Here
 -- Date:         --/--/--
 -- File name:    ../css/style.css
 -- Project Name: --enter--
@@ -82,7 +88,7 @@ EOT
 
 #create a base main.js file
 cat <<EOT >> $baseDir/$newSite/js/main.js
-// Author:       Christopher Sykes
+// Author:       Your Name Here
 // Date:         --/--/--
 // File name:    ../js/main.js
 // Project Name: --enter--
@@ -116,6 +122,7 @@ function draw() {
  
 EOT
 
-ls $baseDir/$newSite/html
-ls $baseDir/$newSite/js
-ls $baseDir/$newSite/css
+## uncomment if you wish to have the new files and driectories listed after they have been made
+## ls $baseDir/$newSite/html
+## ls $baseDir/$newSite/js
+## ls $baseDir/$newSite/css
