@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script to create the directory structure
-# and base files for a new websit
+# and base files for a new website
 
 mkdir $1
 newSite=$1
@@ -9,22 +9,45 @@ baseDir=$PWD
 
 #create the base directories
 makeDirStructure(){
-  mkdir /var/www/$newSite/html
-  mkdir /var/www/$newSite/images
-  mkdir /var/www/$newSite/js
-  mkdir /var/www/$newSite/css
-  mkdir /var/www/$newSite/php
+  mkdir $baseDir/$newSite/html
+  echo " creating ... $baseDir/$newSite/html"
+  mkdir $baseDir/$newSite/images
+  echo " creating ... $baseDir/$newSite/images"
+  mkdir $baseDir/$newSite/js
+  echo " creating ... $baseDir/$newSite/js"
+  mkdir $baseDir/$newSite/css
+  echo " creating ... $baseDir/$newSite/css"
+  mkdir $baseDir/$newSite/php
+  echo " creating ... $baseDir/$newSite/php"
+  echo ""
+  echo "**********************************************************************"
+  echo ""
+  ls $baseDir/$newSite/
+  echo ""
+  echo "**********************************************************************"
 }
 
 #create the base empty files
 makeFiles(){
+  echo "[***%$%***]"
   cd $baseDir/$newSite/html
+  echo "creating $baseDir/$newSite/index.html"
+  echo "[***%$%***]"
   touch index.html
   cd $baseDir/$newSite/js
+  echo "creating $baseDir/$newSite/main.js"
+  echo "[***%$%***]"
   touch main.js
   cd $baseDir/$newSite/css
+  echo "creating $baseDir/$newSite/style.css"
   touch style.css
+  echo "************************************************************"
   cp -r /home/$SUDO_USER/Documents/jsLibs/ $baseDir/$newSite/
+  echo "************************************************************"
+  cd $baseDir/$newSite/
+  chmod -R 755 $baseDir/$newSite/jsLibs
+  echo "changed permissions of $baseDir/$newSite/jsLibs to 755 (-rwxr-xr-x)"
+  echo "************************************************************"
 }
 
 makeDirStructure
@@ -34,8 +57,8 @@ makeFiles
 cat <<EOT >> $baseDir/$newSite/html/index.html
 <!--  Author:       Your Name Here
 //    Date:         --/--/--
-//    File name:    ../js/main.js
-//    Project Name: --enter--
+//    File name:    $newSite/js/main.js
+//    Project Name: $newSite
 //    version:      ##.#### -->
 
 
@@ -43,7 +66,7 @@ cat <<EOT >> $baseDir/$newSite/html/index.html
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>$newSite</title>
     <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
     <script src="../js/main.js">
     </script>
@@ -122,7 +145,10 @@ function draw() {
  
 EOT
 
+sudo chown -R $SUDO_USER $baseDir/$newSite && sudo chgrp -R $SUDO_USER $baseDir/$newSite
 ## uncomment if you wish to have the new files and driectories listed after they have been made
-## ls $baseDir/$newSite/html
-## ls $baseDir/$newSite/js
-## ls $baseDir/$newSite/css
+  echo "************************************************************"
+  ls $baseDir/$newSite/html
+  ls $baseDir/$newSite/js
+  ls $baseDir/$newSite/css
+  echo "************************************************************"
